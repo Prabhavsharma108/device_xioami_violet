@@ -109,7 +109,14 @@ TARGET_SCREEN_WIDTH := 1080
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service_64 \
-    libdng_sdk.vendor
+    libdng_sdk.vendor \
+    libgui_vendor \
+    libxml2 \
+    CameraGo \
+    vendor.qti.hardware.camera.device@1.0.vendor
+
+PRODUCT_COPY_FILES += \
+    prebuilts/vndk/v29/arm64/arch-arm64-armv8-a/shared/vndk-sp/libc++.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libc++.so
 
 PRODUCT_PACKAGES += \
     libshim_megvii
