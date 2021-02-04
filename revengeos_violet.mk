@@ -21,7 +21,9 @@ $(call inherit-product, device/xiaomi/violet/device.mk)
 
 # Inherit some common WaveOS stuff.
 TARGET_BOOT_ANIMATION_RES := 1080
-REVENGEOS_BUILD_TYPE := OFFICIAL
+REVENGEOS_BUILDTYPE := OFFICIAL
+
+
 $(call inherit-product, vendor/revengeos/config/common.mk)
 
 PRODUCT_NAME := revengeos_violet
@@ -35,6 +37,6 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME="violet"
 
 # Fingerprint
-BUILD_FINGERPRINT := google/redfin/redfin:11/RQ1A.210105.003/7005429:user/release-keys
+BUILD_FINGERPRINT := google/redfin/redfin:11/RQ1A.210205.004/7038034:user/release-keys
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
