@@ -1,42 +1,39 @@
-# Copyright (C) 2020-2021 Wave-OS
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
+# Copyright (C) 2020 The LineageOS Project
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+# SPDX-License-Identifier: Apache-2.0
 #
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+
+# Inherit some common RevengeOS stuff
+TARGET_GAPPS_ARCH := arm64
+TARGET_FACE_UNLOCK_SUPPORTED := true
+TARGET_BOOT_ANIMATION_RES := 1080
+$(call inherit-product, vendor/revengeos/config/common.mk)
+
+# Official-ify
+REVENGEOS_BUILDTYPE := OFFICIAL
+
+# Inherit from Violet device
+$(call inherit-product, $(LOCAL_PATH)/device.mk)
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit from violet device
-$(call inherit-product, device/xiaomi/violet/device.mk)
-
-# Inherit some common WaveOS stuff.
-TARGET_BOOT_ANIMATION_RES := 1080
-REVENGEOS_BUILDTYPE := OFFICIAL
-
-
-$(call inherit-product, vendor/revengeos/config/common.mk)
-
-PRODUCT_NAME := revengeos_violet
-PRODUCT_DEVICE := violet
 PRODUCT_BRAND := Xiaomi
-PRODUCT_MODEL := Redmi Note 7 Pro
+PRODUCT_DEVICE := Violet
 PRODUCT_MANUFACTURER := Xiaomi
-
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="violet-user 9 PKQ1.181203.001 V11.0.8.0.PFHINXM release-keys" \
-    PRODUCT_NAME="violet"
-
-# Fingerprint
-BUILD_FINGERPRINT := google/redfin/redfin:11/RQ1A.210205.004/7038034:user/release-keys
+PRODUCT_NAME := revengeos_violet
+PRODUCT_MODEL := Redmi Note 7 pro
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRIVATE_BUILD_DESC="redfin-user 11 RQ1A.210205.004 7038034 release-keys" \
+    PRODUCT_NAME="RMX1921"
+
+# Set BUILD_FINGERPRINT variable to be picked up by both system and vendor build.prop
+BUILD_FINGERPRINT := google/redfin/redfin:11/RQ1A.210205.004/7038034:user/release-keys
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.fingerprint=$(BUILD_FINGERPRINT)
